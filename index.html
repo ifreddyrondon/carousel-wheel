@@ -12,17 +12,20 @@
 
 		<script id="vertical-carousel-template" type="text/x-handlebars-template">
 			<div id="vertical-carousel-wrapper">
-				<div class="vertical-carousel-element-container prev">
-					<h1>{{elements.prev.header}}</h1>
-					<h3>{{elements.prev.body}}</h3>
+				<div class="vertical-carousel-element-container prev animated">
+					<h1>{{prev.header}}</h1>
+					<h3>{{prev.body}}</h3>
+					<h4>{{prev.components}}</h4>
 				</div>
-				<div class="vertical-carousel-element-container current">
-					<h1>{{elements.current.header}}</h1>
-					<h3>{{elements.current.body}}</h3>
+				<div class="vertical-carousel-element-container current animated">
+					<h1>{{current.header}}</h1>
+					<h3>{{current.body}}</h3>
+					<h4>{{prev.components}}</h4>
 				</div>
-				<div class="vertical-carousel-element-container next">
-					<h1>{{elements.next.header}}</h1>
-					<h3>{{elements.next.body}}</h3>
+				<div class="vertical-carousel-element-container next animated">
+					<h1>{{next.header}}</h1>
+					<h3>{{next.body}}</h3>
+					<h4>{{prev.components}}</h4>
 				</div>
 			</div>
 		</script>
@@ -34,5 +37,107 @@
 		<script type="text/javascript" src="necessary/js/backbone-min.js"></script>
 
 		<script type="text/javascript" src="js/VerticalCarousel.js"></script>
+
+		<script type="text/javascript">
+			var data = {
+				elements: [
+					// {
+					// 	img:'necessary/img/poster_1.jpg',
+					// 	header: 'asdasdas',
+					// 	body: 'adsasd'
+					// },
+					// {
+					// 	img:'necessary/img/poster_2.jpg',
+					// },
+					// {
+					// 	body: 'adsasd'
+					// },
+					// {
+					// 	img:'necessary/img/poster_3.jpg',
+					// 	body: 'adsasd'
+					// },
+					// {
+					// 	header: 'asdasdas',
+					// },
+					// {
+					// 	img:'necessary/img/poster_4.jpg',
+					// 	header: 'adsasd'
+					// },
+					// {
+					// 	img:'necessary/img/poster_5.jpg',
+					// 	header: 'asdasdas',
+					// 	body: 'adsasd'
+					// },
+					{
+						header: '0',
+						body: 'You can do it'
+					},
+					{
+						header: '1',
+						body: 'You can do it'
+					},
+					{
+						header: '2',
+						body: 'You can do it'
+					},
+					{
+						header: '3',
+						body: 'You can do it'
+					},
+					{
+						header: '4',
+						body: 'You can do it'
+					},
+					{
+						header: '5',
+						body: 'You can do it'
+					},
+					{
+						header: '6',
+						body: 'You can do it'
+					},
+					{
+						header: '7',
+						body: 'You can do it'
+					},
+					// {
+					// 	img:'necessary/img/poster_1.jpg',
+					// },
+					// {
+					// 	img:'necessary/img/poster_2.jpg',
+					// },
+					// {
+					// 	img:'necessary/img/poster_3.jpg',
+					// },
+					// {
+					// 	img:'necessary/img/poster_4.jpg',
+					// },
+					// {
+					// 	img:'necessary/img/poster_5.jpg',
+					// },
+					// {
+					// 	img:'necessary/img/poster_6.jpg',
+					// },
+				]
+			};
+
+
+			new VerticalCarousel({
+				properties: {
+					$el : $('#vertical_carousel'),
+					width: '500px', // default 400px
+					// backgroundColor: '#000',
+					// backgroundCardsColor: '#ff00ff' // default #C7CFD8
+					// first : 3,
+					shuffle: true,
+					// autoScroll: true,
+					// autoScrollTime: 3000, // deafult 5000
+					// animationTime: '.3s' // default 1s
+				},
+				data: data
+			});
+
+		</script>
+
 	</body>
 </html>

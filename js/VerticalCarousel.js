@@ -1,6 +1,3 @@
-// TODO: hacer cuando son solo 2 o 1 componente
-//		 cuando comience en 0		 
-
 var VerticalCarousel = Backbone.View.extend({
 
 	indexes: {
@@ -46,7 +43,12 @@ var VerticalCarousel = Backbone.View.extend({
         		throw 'The "first" property must be less than or equal to the number of elements in the data';
         	else
         		this.indexes.current = obj.properties.first;
-        else
+
+        else if(obj.properties.shuffle){
+        	this.data.elements = _.shuffle(this.data.elements);
+        	this.indexes.current = 0;
+
+        } else
 			this.indexes.current = 0;
 
 		this.setPrevAndNextIndexes();
@@ -61,8 +63,38 @@ var VerticalCarousel = Backbone.View.extend({
 			$('#vertical-carousel-wrapper').hide();
 			throw 'This component just work with 1 or more than 2 data elements';
 		}
-        
+
+		if(obj.properties.autoScroll){
+
+			if(obj.properties.autoScrollTime)
+				this.properties.autoScrollTime = obj.properties.autoScrollTime;
+			else
+				this.properties.autoScrollTime = 5000;
+        	
+        	this.autoScroll();
+		}		
 	},
+
+	// parsingData: function(){
+	// 	var self = this;
+
+	// 	_.each(this.data.elements, function(data){
+	// 		if(data.body && data.header && data.img)
+	// 			data.components = 'all';
+	// 		else if(data.body && data.header)
+	// 			data.components = 'body-header';
+	// 		else if(data.body && data.img)
+	// 			data.components = 'body-img';
+	// 		else if(data.body)
+	// 			data.components = 'body';
+	// 		else if(data.header && data.img)
+	// 			data.components = 'header-img';
+	// 		else if(data.header)
+	// 			data.components = 'header';
+	// 		else if(data.img)
+	// 			data.components = 'img';
+	// 	});
+	// },
 
 	setPrevAndNextIndexes: function(currentIndex){
 
@@ -143,124 +175,36 @@ var VerticalCarousel = Backbone.View.extend({
 	},
 
 	render: function(){
-		var template = Handlebars.compile($("#vertical-carousel-template").html());
 
-		_.each(this.indexesData, function(data){
-			if(data.body && data.header && data.img)
-				console.log('todo');
-			else if(data.body && data.header)
-				console.log('body and header');
-			else if(data.body && data.img)
-				console.log('body and img');
-			else if(data.body)
-				console.log('body');
-			else if(data.header && data.img)
-				console.log('header and img');
-			else if(data.header)
-				console.log('header');
-			else if(data.img)
-				console.log('img');
-		});
+		var VerticalCarouselTemplate = $("#vertical-carousel-template").html();
+		this.$el.html(Handlebars.compile(VerticalCarouselTemplate)(this.indexesData));
 
-
-		var html = template({elements: this.indexesData});
-		this.$el.html(html);
-
+		if(this.properties.width)
+			$('#vertical-carousel-wrapper').css('max-width',this.properties.width);
 		if(this.properties.backgroundColor)
-			$('.vertical-carousel-element-container').css('background-color',this.properties.backgroundColor);
-	}
-
-});
-
-
-var data = {
-	elements: [
-		{
-			img:'necessary/img/poster_1.jpg',
-			header: 'asdasdas',
-			body: 'adsasd'
-		},
-		{
-			img:'necessary/img/poster_2.jpg',
-		},
-		{
-			body: 'adsasd'
-		},
-		{
-			img:'necessary/img/poster_3.jpg',
-			body: 'adsasd'
-		},
-		{
-			header: 'asdasdas',
-		},
-		{
-			img:'necessary/img/poster_4.jpg',
-			header: 'adsasd'
-		},
-		{
-			img:'necessary/img/poster_5.jpg',
-			header: 'asdasdas',
-			body: 'adsasd'
-		},
-		{
-			header: '0',
-			body: 'You can do it'
-		},
-		{
-			header: '1',
-			body: 'You can do it'
-		},
-		{
-			header: '2',
-			body: 'You can do it'
-		},
-		{
-			header: '3',
-			body: 'You can do it'
-		},
-		{
-			header: '4',
-			body: 'You can do it'
-		},
-		{
-			header: '5',
-			body: 'You can do it'
-		},
-		{
-			header: '6',
-			body: 'You can do it'
-		},
-		{
-			header: '7',
-			body: 'You can do it'
-		},
-		{
-			img:'necessary/img/poster_1.jpg',
-		},
-		{
-			img:'necessary/img/poster_2.jpg',
-		},
-		{
-			img:'necessary/img/poster_3.jpg',
-		},
-		{
-			img:'necessary/img/poster_4.jpg',
-		},
-		{
-			img:'necessary/img/poster_5.jpg',
-		},
-		{
-			img:'necessary/img/poster_6.jpg',
-		},
-	]
-};
-
-
-new VerticalCarousel({
-	properties: {
-		$el : $('#vertical_carousel'),
-		// backgroundColor: '#ff00ff'
-		// first : 3
+			$('#vertical-carousel-wrapper').css('background-color',this.properties.backgroundColor);
+		if(this.properties.backgroundCardsColor)
+			$('.vertical-carousel-element-container').css('background-color',this.properties.backgroundCardsColor);
+		if(this.properties.animationTime){
+			$('.animated').css('-webkit-animation-duration',this.properties.animationTime);
+			$('.animated').css('-moz-animation-duration',this.properties.animationTime);
+			$('.animated').css('-o-animation-duration',this.properties.animationTime);
+			$('.animated').css('animation-duration',this.properties.animationTime);
+		}
 	},
-	data: data
+
+	autoScroll: function(){
+		var self = this;
+
+		this.timer = window.setInterval(function(){
+			if(self.properties.autoScroll)
+				$('.vertical-carousel-element-container').trigger('click');
+		}, this.properties.autoScrollTime);
+	},
+
+	stopScroll: function () {
+        this.properties.autoScroll = false;
+        clearInterval(this.timer);
+    },
+
 });

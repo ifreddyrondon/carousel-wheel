@@ -1,0 +1,12 @@
+{
+  "css": [
+    "VerticalCarousel.css"
+  ],
+  "html": [
+    "VerticalCarousel.handlebars"
+  ],
+  "js": [
+    "VerticalCarousel.js"
+  ],
+  "dependencies": {}
+}

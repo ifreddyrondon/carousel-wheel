@@ -13,10 +13,11 @@
 
 .vertical-carousel-element-container {
 	padding:50px;
+	margin-left: 1.8em;
+	margin-right: 1.8em;
 	border: 1px solid black;
 	clear: both;
 	background-color: #C7CFD8;
-	max-width: 400px;
 }
 
 .vertical-carousel-element-container img {
@@ -41,6 +42,24 @@
 
 .col-text {
 	width: 60%;
+}
+
+@media (max-width: 480px) {
+	#vertical-carousel-wrapper {
+		width: 100%;
+		margin: 0px;
+	}
+}
+
+.animated {
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-o-animation-duration: 1s;
+  	animation-duration: 1s;
+  	-webkit-animation-fill-mode: both;
+  	-moz-animation-fill-mode: both;
+  	-o-animation-fill-mode: both;
+  	animation-fill-mode: both;
 }
 
 @-webkit-keyframes show-from-up {
@@ -69,10 +88,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: show-from-up 1s ease-out 0s 1 normal;
-	-moz-animation: show-from-up 1s ease-out 0s 1 normal;
-	-o-animation: show-from-up 1s ease-out 0s 1 normal;
-    animation: show-from-up 1s ease-out 0s 1 normal;
+  	-webkit-animation-name: show-from-up;
+  	-moz-animation-name: show-from-up;
+  	-o-animation-name: show-from-up;
+  	animation-name: show-from-up;
 }
 
 @-webkit-keyframes show-from-down {
@@ -101,10 +120,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: show-from-down 1s ease-out 0s 1 normal;
-	-moz-animation: show-from-down 1s ease-out 0s 1 normal;
-	-o-animation: show-from-down 1s ease-out 0s 1 normal;
-    animation: show-from-down 1s ease-out 0s 1 normal;
+  	-webkit-animation-name: show-from-down;
+  	-moz-animation-name: show-from-down;
+  	-o-animation-name: show-from-down;
+  	animation-name: show-from-down;
 }
 
 @-webkit-keyframes to-next {
@@ -133,10 +152,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: to-next 1s linear 0s 1 normal;
-	-moz-animation: to-next 1s linear 0s 1 normal;
-	-o-animation: to-next 1s linear 0s 1 normal;
-    animation: to-next 1s linear 0s 1 normal;
+  	-webkit-animation-name: to-next;
+  	-moz-animation-name: to-next;
+  	-o-animation-name: to-next;
+  	animation-name: to-next;
 }
 
 @-webkit-keyframes to-prev {
@@ -165,10 +184,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: to-prev 1s linear 0s 1 normal;
-	-moz-animation: to-prev 1s linear 0s 1 normal;
-	-o-animation: to-prev 1s linear 0s 1 normal;
-    animation: to-prev 1s linear 0s 1 normal;
+  	-webkit-animation-name: to-prev;
+  	-moz-animation-name: to-prev;
+  	-o-animation-name: to-prev;
+  	animation-name: to-prev;
 }
 
 @-webkit-keyframes to-current-from-prev {
@@ -197,10 +216,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: to-current-from-prev 1s linear 0s 1 normal;
-	-moz-animation: to-current-from-prev 1s linear 0s 1 normal;
-	-o-animation: to-current-from-prev 1s linear 0s 1 normal;
-    animation: to-current-from-prev 1s linear 0s 1 normal;
+  	-webkit-animation-name: to-current-from-prev;
+  	-moz-animation-name: to-current-from-prev;
+  	-o-animation-name: to-current-from-prev;
+  	animation-name: to-current-from-prev;
 }
 
 @-webkit-keyframes to-current-from-next {
@@ -229,10 +248,10 @@
   	-o-transform-style: preserve-3d;
   	transform-style: preserve-3d;
 
-	-webkit-animation: to-current-from-next 1s linear 0s 1 normal;
-	-moz-animation: to-current-from-next 1s linear 0s 1 normal;
-	-o-animation: to-current-from-next 1s linear 0s 1 normal;
-    animation: to-current-from-next 1s linear 0s 1 normal;
+  	-webkit-animation-name: to-current-from-next;
+  	-moz-animation-name: to-current-from-next;
+  	-o-animation-name: to-current-from-next;
+  	animation-name: to-current-from-next;
 }
 
 .prev {

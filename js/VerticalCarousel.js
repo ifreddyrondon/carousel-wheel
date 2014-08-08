@@ -31,11 +31,11 @@ var VerticalCarousel = Backbone.View.extend({
                 console.error('Element ' + this.$el.selector + ' not found');
         }
 
-        if(!obj.data || (obj.data.elements.length - 1) < 0)
-        	throw 'Data not found';
+        if(!obj.properties.content || (obj.properties.content.length - 1) < 0)
+        	throw 'Content not found';
         
-        this.data = obj.data;
-        this.indexes.last = this.data.elements.length - 1;
+        this.content = obj.properties.content;
+        this.indexes.last = this.content.length - 1;
 
         if(obj.properties.first)
 
@@ -45,7 +45,7 @@ var VerticalCarousel = Backbone.View.extend({
         		this.indexes.current = obj.properties.first;
 
         else if(obj.properties.shuffle){
-        	this.data.elements = _.shuffle(this.data.elements);
+        	this.content = _.shuffle(this.content);
         	this.indexes.current = 0;
 
         } else
@@ -138,9 +138,9 @@ var VerticalCarousel = Backbone.View.extend({
 	},
 
 	setIndexesData: function(){
-		this.indexesData.current = this.data.elements[this.indexes.current];
-		this.indexesData.prev = this.data.elements[this.indexes.prev];
-		this.indexesData.next = this.data.elements[this.indexes.next];
+		this.indexesData.current = this.content[this.indexes.current];
+		this.indexesData.prev = this.content[this.indexes.prev];
+		this.indexesData.next = this.content[this.indexes.next];
 	},
 
 	changeElement: function(evt){

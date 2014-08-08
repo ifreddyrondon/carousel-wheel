@@ -39,102 +39,52 @@
 		<script type="text/javascript" src="js/VerticalCarousel.js"></script>
 
 		<script type="text/javascript">
-			var data = {
-				elements: [
-					// {
-					// 	img:'necessary/img/poster_1.jpg',
-					// 	header: 'asdasdas',
-					// 	body: 'adsasd'
-					// },
-					// {
-					// 	img:'necessary/img/poster_2.jpg',
-					// },
-					// {
-					// 	body: 'adsasd'
-					// },
-					// {
-					// 	img:'necessary/img/poster_3.jpg',
-					// 	body: 'adsasd'
-					// },
-					// {
-					// 	header: 'asdasdas',
-					// },
-					// {
-					// 	img:'necessary/img/poster_4.jpg',
-					// 	header: 'adsasd'
-					// },
-					// {
-					// 	img:'necessary/img/poster_5.jpg',
-					// 	header: 'asdasdas',
-					// 	body: 'adsasd'
-					// },
-					{
-						header: '0',
-						body: 'You can do it'
-					},
-					{
-						header: '1',
-						body: 'You can do it'
-					},
-					{
-						header: '2',
-						body: 'You can do it'
-					},
-					{
-						header: '3',
-						body: 'You can do it'
-					},
-					{
-						header: '4',
-						body: 'You can do it'
-					},
-					{
-						header: '5',
-						body: 'You can do it'
-					},
-					{
-						header: '6',
-						body: 'You can do it'
-					},
-					{
-						header: '7',
-						body: 'You can do it'
-					},
-					// {
-					// 	img:'necessary/img/poster_1.jpg',
-					// },
-					// {
-					// 	img:'necessary/img/poster_2.jpg',
-					// },
-					// {
-					// 	img:'necessary/img/poster_3.jpg',
-					// },
-					// {
-					// 	img:'necessary/img/poster_4.jpg',
-					// },
-					// {
-					// 	img:'necessary/img/poster_5.jpg',
-					// },
-					// {
-					// 	img:'necessary/img/poster_6.jpg',
-					// },
-				]
-			};
-
-
 			new VerticalCarousel({
 				properties: {
 					$el : $('#vertical_carousel'),
 					width: '500px', // default 400px
 					// backgroundColor: '#000',
-					// backgroundCardsColor: '#ff00ff' // default #C7CFD8
+					// backgroundCardsColor: '#ff00ff', // default #C7CFD8
 					// first : 3,
 					shuffle: true,
 					// autoScroll: true,
 					// autoScrollTime: 3000, // deafult 5000
-					// animationTime: '.3s' // default 1s
-				},
-				data: data
+					// animationTime: '.3s', // default 1s
+					content : [
+						{
+							header: '0',
+							body: 'You can do it'
+						},
+						{
+							header: '1',
+							body: 'You can do it'
+						},
+						{
+							header: '2',
+							body: 'You can do it'
+						},
+						{
+							header: '3',
+							body: 'You can do it'
+						},
+						{
+							header: '4',
+							body: 'You can do it'
+						},
+						{
+							header: '5',
+							body: 'You can do it'
+						},
+						{
+							header: '6',
+							body: 'You can do it'
+						},
+						{
+							header: '7',
+							body: 'You can do it'
+						}
+					]
+				}
 			});
 
 		</script>

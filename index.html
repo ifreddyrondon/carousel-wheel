@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Vertical Carousel - TEST</title>
+		<link rel="stylesheet" type="text/css" href="css/VerticalCarousel.css">
+	</head>
+	<body>
+		<div id="vertical_carousel"></div>
+
+		<script id="vertical-carousel-template" type="text/x-handlebars-template">
+			<div id="vertical-carousel-wrapper">
+				<div class="vertical-carousel-element-container prev">
+					<h1>{{elements.prev.header}}</h1>
+					<h3>{{elements.prev.body}}</h3>
+				</div>
+				<div class="vertical-carousel-element-container current">
+					<h1>{{elements.current.header}}</h1>
+					<h3>{{elements.current.body}}</h3>
+				</div>
+				<div class="vertical-carousel-element-container next">
+					<h1>{{elements.next.header}}</h1>
+					<h3>{{elements.next.body}}</h3>
+				</div>
+			</div>
+		</script>
+
+		<!-- External library Includes -->
+		<script type="text/javascript" src="necessary/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="necessary/js/underscore-min.js"></script>
+		<script type="text/javascript" src="necessary/js/handlebars.min.js"></script>
+		<script type="text/javascript" src="necessary/js/backbone-min.js"></script>
+
+		<script type="text/javascript" src="js/VerticalCarousel.js"></script>
+	</body>
+</html>

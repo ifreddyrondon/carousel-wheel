@@ -12,22 +12,59 @@
 
 		<script id="vertical-carousel-template" type="text/x-handlebars-template">
 			<div id="vertical-carousel-wrapper">
-				<div class="vertical-carousel-element-container prev animated">
-					<h1>{{prev.header}}</h1>
-					<h3>{{prev.body}}</h3>
-					<h4>{{prev.components}}</h4>
-				</div>
-				<div class="vertical-carousel-element-container current animated">
-					<h1>{{current.header}}</h1>
-					<h3>{{current.body}}</h3>
-					<h4>{{prev.components}}</h4>
-				</div>
-				<div class="vertical-carousel-element-container next animated">
-					<h1>{{next.header}}</h1>
-					<h3>{{next.body}}</h3>
-					<h4>{{prev.components}}</h4>
-				</div>
+				<div class="vertical-carousel-element-container prev animated"></div>
+				<div class="vertical-carousel-element-container current animated"></div>
+				<div class="vertical-carousel-element-container next animated"></div>
 			</div>
+		</script>
+
+		<script id="vertical-carousel-img-template" type="text/x-handlebars-template">
+				<img src={{img}} />
+		</script>
+
+		<script id="vertical-carousel-header-template" type="text/x-handlebars-template">
+			<div class="header just-text">
+				<h1>{{header}}</h1>
+			</div>
+		</script>
+
+		<script id="vertical-carousel-body-template" type="text/x-handlebars-template">
+			<div class="body just-text">
+				<p>{{body}}</p>
+			</div>
+		</script>
+
+		<script id="vertical-carousel-header-body-template" type="text/x-handlebars-template">
+			<div class="just-text">
+				<h1>{{header}}</h1>
+				<p>{{body}}</p>
+			</div>
+		</script>
+
+		<script id="vertical-carousel-img-text-template" type="text/x-handlebars-template">
+			<table>
+				<tr>
+					<td width="40%"><img src={{img}} /></td>
+					{{#if header}}
+					<td width="60%" class="just-text"><h1>{{header}}</h1></td>
+					{{/if}}
+					{{#if body}}
+					<td width="60%" class="just-text"><p>{{body}}</p></td>
+					{{/if}}
+				</tr>
+			</table>
+		</script>
+
+		<script id="vertical-carousel-img-header-body-template" type="text/x-handlebars-template">
+			<table>
+				<tr>
+					<td width="40%"><img src={{img}} /></td>
+					<td width="60%" class="just-text">
+						<h2>{{header}}</h2>
+						<p>{{body}}</p>
+					</td>
+				</tr>
+			</table>
 		</script>
 
 		<!-- External library Includes -->
@@ -45,44 +82,44 @@
 					width: '500px', // default 400px
 					// backgroundColor: '#000',
 					// backgroundCardsColor: '#ff00ff', // default #C7CFD8
-					// first : 3,
+					// first : 4,
 					shuffle: true,
 					// autoScroll: true,
 					// autoScrollTime: 3000, // deafult 5000
 					// animationTime: '.3s', // default 1s
 					content : [
 						{
-							header: '0',
-							body: 'You can do it'
+							header: 'Header',
 						},
 						{
-							header: '1',
-							body: 'You can do it'
+							body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum porta ullamcorper. Donec quis adipiscing tortor, et eleifend sapien. Fusce consequat odio tellus, eu bibendum eros commodo quis.'
 						},
 						{
-							header: '2',
-							body: 'You can do it'
+							img: 'necessary/img/poster_1.jpg',
 						},
 						{
-							header: '3',
-							body: 'You can do it'
+							header: 'Header',
+							body: 'Nullam lobortis, sem non pellentesque accumsan, libero erat ullamcorper purus, sit amet dignissim arcu libero nec dui. In ligula dui, posuere sit amet nisl nec, iaculis vulputate tortor.'
 						},
 						{
-							header: '4',
-							body: 'You can do it'
+							img: 'necessary/img/thumb_1.jpg',
+							body: 'In vitae magna at felis interdum bibendum. Mauris laoreet diam quis auctor egestas. Nam a varius lorem, vel iaculis nibh.'
 						},
 						{
-							header: '5',
-							body: 'You can do it'
+							img: 'necessary/img/thumb_2.jpg',
+							header: 'iOS 8.'
 						},
 						{
-							header: '6',
-							body: 'You can do it'
+							img: 'necessary/img/poster_2.jpg',
 						},
 						{
-							header: '7',
-							body: 'You can do it'
-						}
+							img: 'necessary/img/thumb_3.jpg',
+							header: 'OSX Yosemite.',
+							body: 'In vitae magna at felis interdum bibendum. Mauris laoreet diam quis auctor egestas. Nam a varius lorem, vel iaculis nibh.'
+						},
+						{
+							img: 'necessary/img/poster_3.jpg',
+						},
 					]
 				}
 			});

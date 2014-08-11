@@ -35,6 +35,7 @@ var VerticalCarousel = Backbone.View.extend({
         	throw 'Content not found';
         
         this.content = obj.properties.content;
+        this.parsingContent();
         this.indexes.last = this.content.length - 1;
 
         if(obj.properties.first)
@@ -74,27 +75,6 @@ var VerticalCarousel = Backbone.View.extend({
         	this.autoScroll();
 		}		
 	},
-
-	// parsingData: function(){
-	// 	var self = this;
-
-	// 	_.each(this.data.elements, function(data){
-	// 		if(data.body && data.header && data.img)
-	// 			data.components = 'all';
-	// 		else if(data.body && data.header)
-	// 			data.components = 'body-header';
-	// 		else if(data.body && data.img)
-	// 			data.components = 'body-img';
-	// 		else if(data.body)
-	// 			data.components = 'body';
-	// 		else if(data.header && data.img)
-	// 			data.components = 'header-img';
-	// 		else if(data.header)
-	// 			data.components = 'header';
-	// 		else if(data.img)
-	// 			data.components = 'img';
-	// 	});
-	// },
 
 	setPrevAndNextIndexes: function(currentIndex){
 
@@ -174,10 +154,60 @@ var VerticalCarousel = Backbone.View.extend({
 			
 	},
 
-	render: function(){
+	parsingContent: function(){
+		var self = this;
 
+		_.each(this.content, function(data){
+			if(data.body && data.header && data.img)
+				data.type = 'img-header-body';
+			else if(data.body && data.header)
+				data.type = 'header-body';
+			else if(data.body && data.img)
+				data.type = 'img-body';
+			else if(data.body)
+				data.type = 'body';
+			else if(data.header && data.img)
+				data.type = 'img-header';
+			else if(data.header)
+				data.type = 'header';
+			else if(data.img)
+				data.type = 'img';
+			else if(data.component)
+				data.type = 'component';
+		});
+	},
+
+	templateChooser: function(data){
+		
+		switch(data.type) {
+			case 'img-header-body':
+		    	return Handlebars.compile($('#vertical-carousel-img-header-body-template').html())(data);
+			case 'header-body':
+		    	return Handlebars.compile($('#vertical-carousel-header-body-template').html())(data);
+		    case 'img-body':
+		    	return Handlebars.compile($('#vertical-carousel-img-text-template').html())(data);
+		    case 'img-header':
+		    	return Handlebars.compile($('#vertical-carousel-img-text-template').html())(data);
+		    case 'header':
+		    	return Handlebars.compile($('#vertical-carousel-header-template').html())(data);
+		    case 'body':
+		        return Handlebars.compile($('#vertical-carousel-body-template').html())(data);
+		    case 'img':
+		        return Handlebars.compile($('#vertical-carousel-img-template').html())(data);
+		    default:
+		        return null;
+		}
+	},
+
+	render: function(){
+		
 		var VerticalCarouselTemplate = $("#vertical-carousel-template").html();
-		this.$el.html(Handlebars.compile(VerticalCarouselTemplate)(this.indexesData));
+		this.$el.html(Handlebars.compile(VerticalCarouselTemplate));
+
+		$('.prev').html(this.templateChooser(this.indexesData.prev));
+		$('.current').html(this.templateChooser(this.indexesData.current));
+		$('.next').html(this.templateChooser(this.indexesData.next));
+
 
 		if(this.properties.width)
 			$('#vertical-carousel-wrapper').css('max-width',this.properties.width);

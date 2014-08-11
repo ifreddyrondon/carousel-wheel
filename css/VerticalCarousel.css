@@ -137,14 +137,14 @@
 
 .animation-show-from-down {
 	-webkit-transform-style: preserve-3d;
-  	-moz-transform-style: preserve-3d;
-  	-o-transform-style: preserve-3d;
-  	transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 
-  	-webkit-animation-name: show-from-down;
-  	-moz-animation-name: show-from-down;
-  	-o-animation-name: show-from-down;
-  	animation-name: show-from-down;
+	-webkit-animation-name: show-from-down;
+	-moz-animation-name: show-from-down;
+	-o-animation-name: show-from-down;
+	animation-name: show-from-down;
 }
 
 @-webkit-keyframes to-next {
@@ -169,14 +169,14 @@
 
 .animation-to-next {
 	-webkit-transform-style: preserve-3d;
-  	-moz-transform-style: preserve-3d;
-  	-o-transform-style: preserve-3d;
-  	transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 
-  	-webkit-animation-name: to-next;
-  	-moz-animation-name: to-next;
-  	-o-animation-name: to-next;
-  	animation-name: to-next;
+	-webkit-animation-name: to-next;
+	-moz-animation-name: to-next;
+	-o-animation-name: to-next;
+	animation-name: to-next;
 }
 
 @-webkit-keyframes to-prev {
@@ -201,14 +201,14 @@
 
 .animation-to-prev {
 	-webkit-transform-style: preserve-3d;
-  	-moz-transform-style: preserve-3d;
-  	-o-transform-style: preserve-3d;
-  	transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 
-  	-webkit-animation-name: to-prev;
-  	-moz-animation-name: to-prev;
-  	-o-animation-name: to-prev;
-  	animation-name: to-prev;
+	-webkit-animation-name: to-prev;
+	-moz-animation-name: to-prev;
+	-o-animation-name: to-prev;
+	animation-name: to-prev;
 }
 
 @-webkit-keyframes to-current-from-prev {

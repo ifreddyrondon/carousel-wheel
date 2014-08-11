@@ -1,5 +1,4 @@
 // TODO: another efects when transition
-//		 arrows to pass the transition
 //		 keyboard transition
 
 var VerticalCarousel = Backbone.View.extend({
@@ -129,13 +128,17 @@ var VerticalCarousel = Backbone.View.extend({
 		this.indexesData.next = this.content[this.indexes.next];
 	},
 
+	processKey: function(evt){
+		console.log('tecla');
+	},
+
 	changeElement: function(evt){
 		var target = $(evt.currentTarget);
 
 		if(!target.hasClass('current')){
 			var indexOfContainer = $(".vertical-carousel-element-container").index(evt.currentTarget);
 			var index;
-			if (indexOfContainer === 0) 
+			if (indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow') 
 				index = this.indexes.prev;
 			else
 				index = this.indexes.next;

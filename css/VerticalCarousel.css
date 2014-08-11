@@ -3,7 +3,6 @@
 #vertical-carousel-wrapper {
 	position: relative;
 	margin: 20px;
-	border: 1px solid black;
 	max-width: 400px;
 	-webkit-perspective:1400px;
 	-moz-perspective:1400px;
@@ -21,6 +20,33 @@
 
 .vertical-carousel-element-container img {
 	width: 100%;
+}
+
+#vertical-carousel-up-arrow, #vertical-carousel-down-arrow, #vertical-carousel-left-arrow, #vertical-carousel-right-arrow{
+  background-image: url('/images/arrows.png');
+  cursor: pointer;
+  display: none;
+}
+
+#vertical-carousel-up-arrow, #vertical-carousel-down-arrow {
+  width: 45px;
+  height: 70px;  
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform:rotate(90deg);
+  -moz-transform:rotate(90deg);
+  -o-transform:rotate(90deg);
+  transform:rotate(90deg);
+}
+
+#vertical-carousel-up-arrow {
+  background-position:-15px -10px;
+  margin-bottom: -20px;
+}
+
+#vertical-carousel-down-arrow {
+  margin-top: -20px; 
+  background-position:-90px -10px;
 }
 
 .just-text {
@@ -47,14 +73,14 @@
 }
 
 .animated {
-	-webkit-animation-duration: 1s;
-	-moz-animation-duration: 1s;
-	-o-animation-duration: 1s;
-  	animation-duration: 1s;
-  	-webkit-animation-fill-mode: both;
-  	-moz-animation-fill-mode: both;
-  	-o-animation-fill-mode: both;
-  	animation-fill-mode: both;
+	-webkit-animation-duration: 0.7s;
+	-moz-animation-duration: 0.7s;
+	-o-animation-duration: 0.7s;
+	animation-duration: 0.7s;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
 
 @-webkit-keyframes show-from-up {

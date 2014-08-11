@@ -1,3 +1,7 @@
+// TODO: another efects when transition
+//		 arrows to pass the transition
+//		 keyboard transition
+
 var VerticalCarousel = Backbone.View.extend({
 
 	indexes: {
@@ -16,7 +20,9 @@ var VerticalCarousel = Backbone.View.extend({
 	$parent: null,
 
 	events : {
-		'click .vertical-carousel-element-container' : 'changeElement'
+		'click .vertical-carousel-element-container' : 'changeElement',
+		'click #vertical-carousel-up-arrow' : 'changeElement',
+		'click #vertical-carousel-down-arrow' : 'changeElement'
 	},
 
 	initialize: function(obj){
@@ -139,7 +145,7 @@ var VerticalCarousel = Backbone.View.extend({
 			this.setIndexesData();
 			this.render();
 
-			if(indexOfContainer === 0){
+			if(indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow'){
 				$('.prev').addClass('animation-show-from-up');
 				$('.current').addClass('animation-to-current-from-prev');
 				$('.next').addClass('animation-to-next');
@@ -208,13 +214,23 @@ var VerticalCarousel = Backbone.View.extend({
 		$('.current').html(this.templateChooser(this.indexesData.current));
 		$('.next').html(this.templateChooser(this.indexesData.next));
 
-
+		if(this.properties.border)
+			$('#vertical-carousel-wrapper').css('border','1px solid black');
 		if(this.properties.width)
 			$('#vertical-carousel-wrapper').css('max-width',this.properties.width);
 		if(this.properties.backgroundColor)
 			$('#vertical-carousel-wrapper').css('background-color',this.properties.backgroundColor);
 		if(this.properties.backgroundCardsColor)
 			$('.vertical-carousel-element-container').css('background-color',this.properties.backgroundCardsColor);
+		if(this.properties.arrows){
+			if(this.properties.horizontal){
+				$('#vertical-carousel-left-arrow').css('display','block');
+				$('#vertical-carousel-right-arrow').css('display','block');
+			} else {
+				$('#vertical-carousel-up-arrow').css('display','block');
+				$('#vertical-carousel-down-arrow').css('display','block');
+			}
+		}
 		if(this.properties.animationTime){
 			$('.animated').css('-webkit-animation-duration',this.properties.animationTime);
 			$('.animated').css('-moz-animation-duration',this.properties.animationTime);

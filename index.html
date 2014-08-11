@@ -12,9 +12,11 @@
 
 		<script id="vertical-carousel-template" type="text/x-handlebars-template">
 			<div id="vertical-carousel-wrapper">
+				<div id="vertical-carousel-up-arrow"></div>
 				<div class="vertical-carousel-element-container prev animated"></div>
 				<div class="vertical-carousel-element-container current animated"></div>
 				<div class="vertical-carousel-element-container next animated"></div>
+				<div id="vertical-carousel-down-arrow"></div>
 			</div>
 		</script>
 
@@ -80,11 +82,13 @@
 				properties: {
 					$el : $('#vertical_carousel'),
 					width: '500px', // default 400px
-					// backgroundColor: '#000',
+					// backgroundColor: '#000', // deafult transparent
 					// backgroundCardsColor: '#ff00ff', // default #C7CFD8
-					// first : 4,
-					shuffle: true,
-					// autoScroll: true,
+					arrows: true, // deafult false
+					// first : 4, // deafult 0
+					shuffle: true, // deafult false
+					// border: true, // deafult false
+					// autoScroll: true, // deafult false
 					// autoScrollTime: 3000, // deafult 5000
 					// animationTime: '.3s', // default 1s
 					content : [

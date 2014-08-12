@@ -79,7 +79,19 @@ var VerticalCarousel = Backbone.View.extend({
         	
         	this.autoScroll();
 		}		
+
+		if(obj.properties.keyboard)
+			$(document).bind("keyup", _.bind(this.logKey, this));	
 	},
+
+	logKey: function(evt) {
+    	var key = evt.which;
+
+    	if(key == 37 || key == 38 || key == 39 || key == 40){
+    		this.changeElement(evt);
+    		evt.preventDefault();
+    	}
+  	},
 
 	setPrevAndNextIndexes: function(currentIndex){
 
@@ -138,7 +150,7 @@ var VerticalCarousel = Backbone.View.extend({
 		if(!target.hasClass('current')){
 			var indexOfContainer = $(".vertical-carousel-element-container").index(evt.currentTarget);
 			var index;
-			if (indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow') 
+			if (indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || evt.which == 40) 
 				index = this.indexes.prev;
 			else
 				index = this.indexes.next;
@@ -148,7 +160,7 @@ var VerticalCarousel = Backbone.View.extend({
 			this.setIndexesData();
 			this.render();
 
-			if(indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow'){
+			if(indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || evt.which == 40){
 				$('.prev').addClass('animation-show-from-up');
 				$('.current').addClass('animation-to-current-from-prev');
 				$('.next').addClass('animation-to-next');
@@ -158,9 +170,7 @@ var VerticalCarousel = Backbone.View.extend({
 				$('.current').addClass('animation-to-current-from-next');
 				$('.next').addClass('animation-show-from-down');
 			}
-
 		}
-			
 	},
 
 	parsingContent: function(){

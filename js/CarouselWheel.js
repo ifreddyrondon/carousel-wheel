@@ -1,7 +1,7 @@
 // TODO: another efects when transition
 //		 keyboard transition
 
-var VerticalCarousel = Backbone.View.extend({
+var CarouselWheel = Backbone.View.extend({
 
 	indexes: {
 		current: null,

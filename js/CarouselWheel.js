@@ -1,6 +1,3 @@
-// TODO: another efects when transition
-//		 keyboard transition
-
 var CarouselWheel = Backbone.View.extend({
 
 	indexes: {
@@ -20,8 +17,11 @@ var CarouselWheel = Backbone.View.extend({
 
 	events : {
 		'click .vertical-carousel-element-container' : 'changeElement',
+		'click .horizontal-carousel-element-container' : 'changeElement',
 		'click #vertical-carousel-up-arrow' : 'changeElement',
-		'click #vertical-carousel-down-arrow' : 'changeElement'
+		'click #vertical-carousel-down-arrow' : 'changeElement',
+		'click #horizontal-carousel-left-arrow' : 'changeElement',
+		'click #horizontal-carousel-right-arrow' : 'changeElement'
 	},
 
 	initialize: function(obj){
@@ -66,7 +66,7 @@ var CarouselWheel = Backbone.View.extend({
 			$('.next').hide();
 		
 		} else if(this.indexes.last == 1){
-			$('#vertical-carousel-wrapper').hide();
+			this.$el.hide();
 			throw 'This component just work with 1 or more than 2 data elements';
 		}
 
@@ -147,10 +147,15 @@ var CarouselWheel = Backbone.View.extend({
 	changeElement: function(evt){
 		var target = $(evt.currentTarget);
 
-		if(!target.hasClass('current')){
-			var indexOfContainer = $(".vertical-carousel-element-container").index(evt.currentTarget);
+		if(!target.hasClass('current-vertical') && !target.hasClass('current-horizontal')){
+			var indexOfContainer;
+			if(this.properties.orientation == 'horizontal')
+				indexOfContainer = $(".horizontal-carousel-element-container").index(evt.currentTarget);
+			else
+				indexOfContainer = $(".vertical-carousel-element-container").index(evt.currentTarget);
+
 			var index;
-			if (indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || evt.which == 40) 
+			if (indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || target.attr('id') == 'horizontal-carousel-right-arrow' || evt.which == 40 || evt.which == 39) 
 				index = this.indexes.prev;
 			else
 				index = this.indexes.next;
@@ -160,15 +165,27 @@ var CarouselWheel = Backbone.View.extend({
 			this.setIndexesData();
 			this.render();
 
-			if(indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || evt.which == 40){
-				$('.prev').addClass('animation-show-from-up');
-				$('.current').addClass('animation-to-current-from-prev');
-				$('.next').addClass('animation-to-next');
+			if(indexOfContainer === 0 || target.attr('id') == 'vertical-carousel-down-arrow' || target.attr('id') == 'horizontal-carousel-right-arrow' || evt.which == 40 || evt.which == 39){
+				if(this.properties.orientation == 'horizontal'){
+					$('.prev-horizontal').addClass('horizontal-animation-show-from-up');
+					$('.current-horizontal').addClass('horizontal-animation-to-current-from-prev');
+					$('.next-horizontal').addClass('horizontal-animation-to-next');	
+				} else {
+					$('.prev-vertical').addClass('vertical-animation-show-from-up');
+					$('.current-vertical').addClass('vertical-animation-to-current-from-prev');
+					$('.next-vertical').addClass('vertical-animation-to-next');	
+				}
 			
 			} else {
-				$('.prev').addClass('animation-to-prev');
-				$('.current').addClass('animation-to-current-from-next');
-				$('.next').addClass('animation-show-from-down');
+				if(this.properties.orientation == 'horizontal'){
+					$('.prev-horizontal').addClass('horizontal-animation-to-prev');
+					$('.current-horizontal').addClass('horizontal-animation-to-current-from-next');
+					$('.next-horizontal').addClass('horizontal-animation-show-from-down');
+				} else {
+					$('.prev-vertical').addClass('vertical-animation-to-prev');
+					$('.current-vertical').addClass('vertical-animation-to-current-from-next');
+					$('.next-vertical').addClass('vertical-animation-show-from-down');
+				}
 			}
 		}
 	},
@@ -200,46 +217,65 @@ var CarouselWheel = Backbone.View.extend({
 		
 		switch(data.type) {
 			case 'img-header-body':
-		    	return Handlebars.compile($('#vertical-carousel-img-header-body-template').html())(data);
+		    	return Handlebars.compile($('#carousel-img-header-body-template').html())(data);
 			case 'header-body':
-		    	return Handlebars.compile($('#vertical-carousel-header-body-template').html())(data);
+		    	return Handlebars.compile($('#carousel-header-body-template').html())(data);
 		    case 'img-body':
-		    	return Handlebars.compile($('#vertical-carousel-img-text-template').html())(data);
+		    	return Handlebars.compile($('#carousel-img-text-template').html())(data);
 		    case 'img-header':
-		    	return Handlebars.compile($('#vertical-carousel-img-text-template').html())(data);
+		    	return Handlebars.compile($('#carousel-img-text-template').html())(data);
 		    case 'header':
-		    	return Handlebars.compile($('#vertical-carousel-header-template').html())(data);
+		    	return Handlebars.compile($('#carousel-header-template').html())(data);
 		    case 'body':
-		        return Handlebars.compile($('#vertical-carousel-body-template').html())(data);
+		        return Handlebars.compile($('#carousel-body-template').html())(data);
 		    case 'img':
-		        return Handlebars.compile($('#vertical-carousel-img-template').html())(data);
+		        return Handlebars.compile($('#carousel-img-template').html())(data);
 		    default:
 		        return null;
 		}
 	},
 
 	render: function(){
-		
-		var VerticalCarouselTemplate = $("#vertical-carousel-template").html();
-		this.$el.html(Handlebars.compile(VerticalCarouselTemplate));
+		var CarouselTemplate;
+		if(this.properties.orientation == 'horizontal')
+			CarouselTemplate = $("#horizontal-carousel-template").html();
+		else
+			CarouselTemplate = $("#vertical-carousel-template").html();
 
-		$('.prev').html(this.templateChooser(this.indexesData.prev));
-		$('.current').html(this.templateChooser(this.indexesData.current));
-		$('.next').html(this.templateChooser(this.indexesData.next));
+		this.$el.html(Handlebars.compile(CarouselTemplate));
+
+		if(this.properties.orientation == 'horizontal'){
+			$('.prev-horizontal').html(this.templateChooser(this.indexesData.prev));
+			$('.current-horizontal').html(this.templateChooser(this.indexesData.current));
+			$('.next-horizontal').html(this.templateChooser(this.indexesData.next));
+		
+		} else {
+			$('.prev-vertical').html(this.templateChooser(this.indexesData.prev));
+			$('.current-vertical').html(this.templateChooser(this.indexesData.current));
+			$('.next-vertical').html(this.templateChooser(this.indexesData.next));
+		}
 
 		if(this.properties.border)
-			$('#vertical-carousel-wrapper').css('border','1px solid black');
+			$('#carousel-wheel-wrapper').css('border','1px solid black');
 		if(this.properties.width)
-			$('#vertical-carousel-wrapper').css('max-width',this.properties.width);
+			$('#carousel-wheel-wrapper').css('max-width',this.properties.width);
 		if(this.properties.backgroundColor)
-			$('#vertical-carousel-wrapper').css('background-color',this.properties.backgroundColor);
-		if(this.properties.backgroundCardsColor)
-			$('.vertical-carousel-element-container').css('background-color',this.properties.backgroundCardsColor);
+			$('#carousel-wheel-wrapper').css('background-color',this.properties.backgroundColor);
+		if(this.properties.backgroundCardsColor){
+			if(this.properties.orientation == 'horizontal')
+				$('.horizontal-carousel-element-container').css('background-color',this.properties.backgroundCardsColor);
+			else
+				$('.vertical-carousel-element-container').css('background-color',this.properties.backgroundCardsColor);
+		}
 		if(this.properties.arrows){
-			if(this.properties.horizontal){
-				$('#vertical-carousel-left-arrow').css('display','block');
-				$('#vertical-carousel-right-arrow').css('display','block');
+			if(this.properties.orientation == 'horizontal'){
+				$('#horizontal-carousel-left-arrow').css('display','block');
+				$('#horizontal-carousel-right-arrow').css('display','block');
+				$('#vertical-carousel-up-arrow').css('display','none');
+				$('#vertical-carousel-down-arrow').css('display','none');
 			} else {
+				$('#horizontal-carousel-left-arrow').css('display','none');
+				$('#horizontal-carousel-right-arrow').css('display','none');
 				$('#vertical-carousel-up-arrow').css('display','block');
 				$('#vertical-carousel-down-arrow').css('display','block');
 			}
@@ -256,8 +292,12 @@ var CarouselWheel = Backbone.View.extend({
 		var self = this;
 
 		this.timer = window.setInterval(function(){
-			if(self.properties.autoScroll)
-				$('.vertical-carousel-element-container').trigger('click');
+			if(self.properties.autoScroll){
+				if(self.properties.orientation == 'horizontal')
+					$('.horizontal-carousel-element-container').trigger('click');
+				else
+					$('.vertical-carousel-element-container').trigger('click');
+			}
 		}, this.properties.autoScrollTime);
 	},
 

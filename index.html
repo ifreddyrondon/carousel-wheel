@@ -8,42 +8,56 @@
 		<link rel="stylesheet" type="text/css" href="css/CarouselWheel.css">
 	</head>
 	<body>
-		<div id="vertical_carousel"></div>
+		<div id="carousel_wheel"></div>
 
 		<script id="vertical-carousel-template" type="text/x-handlebars-template">
-			<div id="vertical-carousel-wrapper">
-				<div id="vertical-carousel-up-arrow"></div>
-				<div class="vertical-carousel-element-container prev animated"></div>
-				<div class="vertical-carousel-element-container current animated"></div>
-				<div class="vertical-carousel-element-container next animated"></div>
-				<div id="vertical-carousel-down-arrow"></div>
+			<div id="carousel-wheel-wrapper">
+				<div id="vertical-carousel-wrapper">
+					<div id="vertical-carousel-up-arrow"></div>
+					<div class="vertical-carousel-element-container prev-vertical animated"></div>
+					<div class="vertical-carousel-element-container current-vertical animated"></div>
+					<div class="vertical-carousel-element-container next-vertical animated"></div>
+					<div id="vertical-carousel-down-arrow"></div>
+				</div>
 			</div>
 		</script>
 
-		<script id="vertical-carousel-img-template" type="text/x-handlebars-template">
+		<script id="horizontal-carousel-template" type="text/x-handlebars-template">
+			<div id="carousel-wheel-wrapper">
+				<div id="horizontal-carousel-wrapper">
+					<div id="horizontal-carousel-left-arrow"></div>
+					<div class="horizontal-carousel-element-container prev-horizontal animated"></div>
+					<div class="horizontal-carousel-element-container current-horizontal animated"></div>
+					<div class="horizontal-carousel-element-container next-horizontal animated"></div>
+					<div id="horizontal-carousel-right-arrow"></div>
+				</div>
+			</div>
+		</script>
+
+		<script id="carousel-img-template" type="text/x-handlebars-template">
 				<img src={{img}} />
 		</script>
 
-		<script id="vertical-carousel-header-template" type="text/x-handlebars-template">
+		<script id="carousel-header-template" type="text/x-handlebars-template">
 			<div class="header just-text">
 				<h1>{{header}}</h1>
 			</div>
 		</script>
 
-		<script id="vertical-carousel-body-template" type="text/x-handlebars-template">
+		<script id="carousel-body-template" type="text/x-handlebars-template">
 			<div class="body just-text">
 				<p>{{body}}</p>
 			</div>
 		</script>
 
-		<script id="vertical-carousel-header-body-template" type="text/x-handlebars-template">
+		<script id="carousel-header-body-template" type="text/x-handlebars-template">
 			<div class="just-text">
 				<h1>{{header}}</h1>
 				<p>{{body}}</p>
 			</div>
 		</script>
 
-		<script id="vertical-carousel-img-text-template" type="text/x-handlebars-template">
+		<script id="carousel-img-text-template" type="text/x-handlebars-template">
 			<table>
 				<tr>
 					<td width="40%"><img src={{img}} /></td>
@@ -57,7 +71,7 @@
 			</table>
 		</script>
 
-		<script id="vertical-carousel-img-header-body-template" type="text/x-handlebars-template">
+		<script id="carousel-img-header-body-template" type="text/x-handlebars-template">
 			<table>
 				<tr>
 					<td width="40%"><img src={{img}} /></td>
@@ -80,13 +94,14 @@
 		<script type="text/javascript">
 			new CarouselWheel({
 				properties: {
-					$el : $('#vertical_carousel'),
-					width: '500px', // default 400px
+					$el : $('#carousel_wheel'),
+					orientation: 'horizontal', // default vertical
+					// width: '1000px', // default 400px
 					// backgroundColor: '#000', // deafult transparent
 					// backgroundCardsColor: '#ff00ff', // default #C7CFD8
 					arrows: true, // deafult false
 					// first : 4, // deafult 0
-					shuffle: true, // deafult false
+					// shuffle: true, // deafult false
 					// border: true, // default false
 					keyboard: true, // default false
 					// autoScroll: true, // deafult false
